@@ -1,1 +1,13 @@
+Kyra Helmbold 
+
++ Plan for using Kali:
+- Kali is installed on my computer. I will access it through the virtual machine on UTM.
+
++ Kali Installation Status:
+- Kali is installed successfully (I hope :))
+
++ Observations/Concerns:
+- The mouse thing is a little difficult for me. I've been using the arrow keys successfully but I couldn't get the ctrl+cmd to work to get the mouse back. 
+- I allocated 40GB of storage, but am worried I will need more for comps. I do not have this much storage available on my computer. 
+
 
