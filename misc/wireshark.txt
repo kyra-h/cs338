@@ -1,12 +1,62 @@
 Kyra Helmbold
 
 ===== DAYTIME =====
+in terminal: 
+nc 132.163.96.4 13
+60201 23-09-14 14:35:33 50 0 0  89.1 UTC(NIST) * 
+
 1. Identify the parts of the TCP 3-way handshake by listing the frame summaries of the relevant frames.
-- 
+
+Frame   Source Ip         Destination IP     Protocol     Info
+1        192.168.64.2      132.163.96.4       TCP        [SYN]
+2        132.163.96.4      192.168.64.2       TCP        [SYN, ACK]
+3        192.168.64.2      132.163.96.4       TCP        [ACK]
+
 2. What port number does the client (i.e. nc on your Kali computer) use for this interaction?
+13
+
 3. Why does the client need a port?
+
 4. What frame contains the actual date and time? (Show the frame summary as in question 1 above.)
+4 132.163.96.4 192.168.64.2 DAYTIME 105 DAYTIME Response
+
 5. What is the full content (not counting the Ethernet, IP, and TCP headers) of the frame? What do each of the pieces of the frame content represent? (Most of the frame content is things like the year, month, day, hour, etc., but there's a little more info, too.)
+
+Lines 0000-0020 are 
+Lines 0030-0060 contain 60201 23-09-14 14:35:33 50 0 0  89.1 UTC(NIST) * 
+
+0000   12 d3 45 c0 bf d9 d2 88 0c 97 ad 64 08 00 45 00   
+12 d3 45 c0 bf d9 <-- IG bit & Individual Address
+d2 88 0c 97 ad 64 <-- IG bit & Individual Address
+08 00  <-- Type: IPv4(0x800)
+45 <-- Header length, 101, 20 bytes
+00 <-- Explicit Congestion Notification
+
+0010   00 5b 00 00 00 00 37 06 9e 4b 84 a3 60 04 c0 a8 
+00 5b <-- Total Length: 91
+00 00 <-- Identification: 0 
+00 00 <-- Fragment offset: 0
+37 <-- Time: 55
+06 <-- Protocol = TCP(6)
+9e 4b <-- Header Checksum
+84 a3 60 04 <-- Source Address: 132.163.96.4
+
+0020   40 02 00 0d e5 b2 b7 f2 56 cd 1f 02 d6 a0 50 18
+c0 a8 40 03 <-- Destination Address: 192.168.64.2 (continued from previous line)
+00 0d <-- Source Port: 13
+e5 b2 <-- Destination Port: 58802
+b7 f2 56 cd <-- Sequence #(raw?): 3086112461
+1f 02 d6 a0 <-- Acknowledgement #(raw?): 520279712
+
+
+
+
+0030   04 0d e6 48 00 00 0a 36 30 32 30 31 20 32 33 2d   <-- this line contains 60201  23-
+0040   30 39 2d 31 34 20 31 34 3a 33 35 3a 33 33 20 35   <-- this line contains 09-14 14:35:33 5
+0050   30 20 30 20 30 20 20 38 39 2e 31 20 55 54 43 28   <-- this line contains 0 0 0  89.1 UTC(
+0060   4e 49 53 54 29 20 2a 20 0a                        <-- this line contains NIST) * 
+
+
 6. What does [SYN] mean?
 7. What does [ACK] mean?
 8. What does [FIN] mean?
