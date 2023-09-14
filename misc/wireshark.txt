@@ -18,6 +18,8 @@ Frame   Source Ip         Destination IP     Protocol     Info
 
 
 3. Why does the client need a port?
+Help from https://networkengineering.stackexchange.com/questions/17521/why-are-ports-needed
+Ports make it so multiple computers can communicate with a server. This helps the server know where requests are coming from and where to send responses to. 
 
 
 4. What frame contains the actual date and time? (Show the frame summary as in question 1 above.)
