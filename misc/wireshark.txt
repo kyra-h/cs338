@@ -12,13 +12,17 @@ Frame   Source Ip         Destination IP     Protocol     Info
 2        132.163.96.4      192.168.64.2       TCP        [SYN, ACK]
 3        192.168.64.2      132.163.96.4       TCP        [ACK]
 
+
 2. What port number does the client (i.e. nc on your Kali computer) use for this interaction?
 13
 
+
 3. Why does the client need a port?
+
 
 4. What frame contains the actual date and time? (Show the frame summary as in question 1 above.)
 4 132.163.96.4 192.168.64.2 DAYTIME 105 DAYTIME Response
+
 
 5. What is the full content (not counting the Ethernet, IP, and TCP headers) of the frame? What do each of the pieces of the frame content represent? (Most of the frame content is things like the year, month, day, hour, etc., but there's a little more info, too.)
 
@@ -47,10 +51,10 @@ c0 a8 40 03 <-- Destination Address: 192.168.64.2 (continued from previous line)
 e5 b2 <-- Destination Port: 58802
 b7 f2 56 cd <-- Sequence #(raw?): 3086112461
 1f 02 d6 a0 <-- Acknowledgement #(raw?): 520279712
+50 <-- Accurate ECN: Not Set
+18 <-- FIN: Not Set
 
-
-
-
+The rest is the datetime info:
 0030   04 0d e6 48 00 00 0a 36 30 32 30 31 20 32 33 2d   <-- this line contains 60201  23-
 0040   30 39 2d 31 34 20 31 34 3a 33 35 3a 33 33 20 35   <-- this line contains 09-14 14:35:33 5
 0050   30 20 30 20 30 20 20 38 39 2e 31 20 55 54 43 28   <-- this line contains 0 0 0  89.1 UTC(
@@ -58,9 +62,104 @@ b7 f2 56 cd <-- Sequence #(raw?): 3086112461
 
 
 6. What does [SYN] mean?
+This is a flag that says the packet is used to initiate a connection. 
+
+
 7. What does [ACK] mean?
+This is a flag that says the packet is used to confirm a packet has been received.
+
+
 8. What does [FIN] mean?
+This is a flag that says the packet is used to end the connection.
+
+
 9. Which entity (the nc client or the daytime server) initiated the closing of the TCP connection? How can you tell?
+The daytime server. This was the first one to send a [FIN] packet in frame 6:
+6	0.067617625	132.163.96.4	192.168.64.2	TCP	54	13 → 58802 [FIN, ACK] 
+
+
 ===== HTTP =====
+1. How many TCP connections were opened? How can you tell?
+I think 4? There were 4 packets with the SYN flag, and 4 closed with the FIN flag
+
+1	0.000000000	192.168.64.2	45.79.89.123	TCP	74	51836 → 80 [SYN]
+2	0.000037500	192.168.64.2	45.79.89.123	TCP	74	51838 → 80 [SYN]
+3	0.052076447	45.79.89.123	192.168.64.2	TCP	66	80 → 51838 [SYN, ACK]
+5	0.052076697	45.79.89.123	192.168.64.2	TCP	66	80 → 51836 [SYN, ACK] 
+
+90	65.444065665	45.79.89.123	192.168.64.2	TCP	54	80 → 51836 [FIN, ACK]
+91	65.444066206	45.79.89.123	192.168.64.2	TCP	54	80 → 51838 [FIN, ACK]
+92	65.444870571	192.168.64.2	45.79.89.123	TCP	54	51836 → 80 [FIN, ACK]
+93	65.445023653	192.168.64.2	45.79.89.123	TCP	54	51838 → 80 [FIN, ACK]
+
+
+2. Can you tell where my homepage (index.html) was requested? (If not, why not? If so, include frame summaries and/or other info that supports your answer.)
+Yes. In the hex for the frame there is a GET /index.html 
+
+Frame Summary:
+7	0.052337238	192.168.64.2	45.79.89.123	HTTP	409	GET /index.html HTTP/1.1 
+
+Frame Contents:
+0000   d2 88 0c 97 ad 64 12 d3 45 c0 bf d9 08 00 45 00   .....d..E.....E.
+0010   01 8b 5b f9 40 00 40 06 55 ff c0 a8 40 02 2d 4f   ..[.@.@.U...@.-O
+0020   59 7b ca 7e 00 50 f4 bc 06 28 c6 7d 83 6d 50 18   Y{.~.P...(.}.mP.
+0030   01 f6 75 d3 00 00 47 45 54 20 2f 69 6e 64 65 78   ..u...GET /index
+0040   2e 68 74 6d 6c 20 48 54 54 50 2f 31 2e 31 0d 0a   .html HTTP/1.1..
+0050   48 6f 73 74 3a 20 63 73 33 33 38 2e 6a 65 66 66   Host: cs338.jeff
+0060   6f 6e 64 69 63 68 2e 63 6f 6d 0d 0a 55 73 65 72   ondich.com..User
+0070   2d 41 67 65 6e 74 3a 20 4d 6f 7a 69 6c 6c 61 2f   -Agent: Mozilla/
+0080   35 2e 30 20 28 58 31 31 3b 20 4c 69 6e 75 78 20   5.0 (X11; Linux 
+0090   61 61 72 63 68 36 34 3b 20 72 76 3a 31 30 39 2e   aarch64; rv:109.
+00a0   30 29 20 47 65 63 6b 6f 2f 32 30 31 30 30 31 30   0) Gecko/2010010
+00b0   31 20 46 69 72 65 66 6f 78 2f 31 31 35 2e 30 0d   1 Firefox/115.0.
+00c0   0a 41 63 63 65 70 74 3a 20 74 65 78 74 2f 68 74   .Accept: text/ht
+00d0   6d 6c 2c 61 70 70 6c 69 63 61 74 69 6f 6e 2f 78   ml,application/x
+00e0   68 74 6d 6c 2b 78 6d 6c 2c 61 70 70 6c 69 63 61   html+xml,applica
+00f0   74 69 6f 6e 2f 78 6d 6c 3b 71 3d 30 2e 39 2c 69   tion/xml;q=0.9,i
+0100   6d 61 67 65 2f 61 76 69 66 2c 69 6d 61 67 65 2f   mage/avif,image/
+0110   77 65 62 70 2c 2a 2f 2a 3b 71 3d 30 2e 38 0d 0a   webp,*/*;q=0.8..
+0120   41 63 63 65 70 74 2d 4c 61 6e 67 75 61 67 65 3a   Accept-Language:
+0130   20 65 6e 2d 55 53 2c 65 6e 3b 71 3d 30 2e 35 0d    en-US,en;q=0.5.
+0140   0a 41 63 63 65 70 74 2d 45 6e 63 6f 64 69 6e 67   .Accept-Encoding
+0150   3a 20 67 7a 69 70 2c 20 64 65 66 6c 61 74 65 0d   : gzip, deflate.
+0160   0a 43 6f 6e 6e 65 63 74 69 6f 6e 3a 20 6b 65 65   .Connection: kee
+0170   70 2d 61 6c 69 76 65 0d 0a 55 70 67 72 61 64 65   p-alive..Upgrade
+0180   2d 49 6e 73 65 63 75 72 65 2d 52 65 71 75 65 73   -Insecure-Reques
+0190   74 73 3a 20 31 0d 0a 0d 0a                        ts: 1....
+
+
+3. Can you tell where my photograph (jeff_square_head.jpg) was requested? (If not, why not? If so, include frame summaries and/or other info that supports your answer.)
+Yes. In the Hex it says GET /jeff_square_head.jpg 
+
+Frame Summary:
+11	0.137391656	192.168.64.2	45.79.89.123	HTTP	378	GET /jeff_square_head.jpg HTTP/1.1 
+
+Frame Contents:
+0000   d2 88 0c 97 ad 64 12 d3 45 c0 bf d9 08 00 45 00   .....d..E.....E.
+0010   01 6c 37 c9 40 00 40 06 7a 4e c0 a8 40 02 2d 4f   .l7.@.@.zN..@.-O
+0020   59 7b ca 7c 00 50 3d a6 2d 03 fe 02 ca fe 50 18   Y{.|.P=.-.....P.
+0030   01 f6 f5 f2 00 00 47 45 54 20 2f 6a 65 66 66 5f   ......GET /jeff_
+0040   73 71 75 61 72 65 5f 68 65 61 64 2e 6a 70 67 20   square_head.jpg 
+0050   48 54 54 50 2f 31 2e 31 0d 0a 48 6f 73 74 3a 20   HTTP/1.1..Host: 
+0060   63 73 33 33 38 2e 6a 65 66 66 6f 6e 64 69 63 68   cs338.jeffondich
+0070   2e 63 6f 6d 0d 0a 55 73 65 72 2d 41 67 65 6e 74   .com..User-Agent
+0080   3a 20 4d 6f 7a 69 6c 6c 61 2f 35 2e 30 20 28 58   : Mozilla/5.0 (X
+0090   31 31 3b 20 4c 69 6e 75 78 20 61 61 72 63 68 36   11; Linux aarch6
+00a0   34 3b 20 72 76 3a 31 30 39 2e 30 29 20 47 65 63   4; rv:109.0) Gec
+00b0   6b 6f 2f 32 30 31 30 30 31 30 31 20 46 69 72 65   ko/20100101 Fire
+00c0   66 6f 78 2f 31 31 35 2e 30 0d 0a 41 63 63 65 70   fox/115.0..Accep
+00d0   74 3a 20 69 6d 61 67 65 2f 61 76 69 66 2c 69 6d   t: image/avif,im
+00e0   61 67 65 2f 77 65 62 70 2c 2a 2f 2a 0d 0a 41 63   age/webp,*/*..Ac
+00f0   63 65 70 74 2d 4c 61 6e 67 75 61 67 65 3a 20 65   cept-Language: e
+0100   6e 2d 55 53 2c 65 6e 3b 71 3d 30 2e 35 0d 0a 41   n-US,en;q=0.5..A
+0110   63 63 65 70 74 2d 45 6e 63 6f 64 69 6e 67 3a 20   ccept-Encoding: 
+0120   67 7a 69 70 2c 20 64 65 66 6c 61 74 65 0d 0a 43   gzip, deflate..C
+0130   6f 6e 6e 65 63 74 69 6f 6e 3a 20 6b 65 65 70 2d   onnection: keep-
+0140   61 6c 69 76 65 0d 0a 52 65 66 65 72 65 72 3a 20   alive..Referer: 
+0150   68 74 74 70 3a 2f 2f 63 73 33 33 38 2e 6a 65 66   http://cs338.jef
+0160   66 6f 6e 64 69 63 68 2e 63 6f 6d 2f 69 6e 64 65   fondich.com/inde
+0170   78 2e 68 74 6d 6c 0d 0a 0d 0a                     x.html....
 
 ===== QUESTIONS =====
+- What is PSH?
+- When the hex doesn't convert to text easily - what is it/ how do I figure it out?
