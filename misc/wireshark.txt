@@ -165,3 +165,4 @@ Frame Contents:
 ===== QUESTIONS =====
 - What is PSH?
 - When the hex doesn't convert to text easily - what is it/ how do I figure it out?
+- What are the IG bits?
