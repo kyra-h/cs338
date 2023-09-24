@@ -40,6 +40,8 @@ p = 67
 q = 83
 
 
+This method is insecure because there is a lot of repetition. For example, 3860 repeats a few times, 1511 repeats a few times, 2442 repeats a few times, etc. People could figure out what is happening by trying common characters/sequences for those spots.
+
 
 
 
