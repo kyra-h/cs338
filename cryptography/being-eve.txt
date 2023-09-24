@@ -29,3 +29,18 @@ A third way of calculating it is: (b**x) % 61 6
 If the integers were larger, the for loops would take a lot more time, and it would be a lot more work for the for loops and for the exponentiation.
 
 ----- RSA ------
+for i in range(13, 5561):
+    for j in range(13, 5561):
+        if i *j == n_Bob:
+            print (i, j)
+            break
+    # p & q are 67 and 83
+
+p = 67
+q = 83
+
+
+
+
+
+
