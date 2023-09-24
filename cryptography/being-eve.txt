@@ -1,24 +1,30 @@
 Kyra Helmbold
 
 ----- Diffie Hellman ------
-The shared secret is 0.
+The shared secret is 6.
 
-Code:
-for a in range(1, 61):
-    for b in range(1, 61):
-        if 7**a % 61 == 30 and 7**b % 61 == 17:
-            print("alice's key is:", a)
-            print("bob's key is:", b)
+Code is below.
 
+g = 7
+p = 61
+a = 30
+b = 17
+
+for x in range(p):
+    for y in range(p):
+        if (g**x) % p == a and (g**y) % p == b:
+            if (b**x) % p == (a**y) % p:
+                print("Alice's secret number(x) =", x)
+                print("Bob's secret number(y) =", y)
+                print("The shared secret is  (g**(x*y)) % p)", (g**(x*y)) % p)
+                print("Another way of calculating it is: (a**y) % 61",  (a**y) % 61)
+                print("A third way of calculating it is: (b**x) % 61",  (b**x) % 61)
 This prints:
-alice's key is: 41
-bob's key is: 23
-
-To find the shared key:
-30^23 % 61 = 0
-17^41 % 61 = 0
-
-7^64 = 0
+Alice's secret number(x) = 41
+Bob's secret number(y) = 23
+The shared secret is  (g**(x*y)) % p) 6
+Another way of calculating it is: (a**y) % 61 6
+A third way of calculating it is: (b**x) % 61 6
 
 If the integers were larger, the for loops would take a lot more time, and it would be a lot more work for the for loops and for the exponentiation.
 
