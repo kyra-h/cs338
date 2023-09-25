@@ -29,23 +29,75 @@ A third way of calculating it is: (b**x) % 61 6
 If the integers were larger, the for loops would take a lot more time, and it would be a lot more work for the for loops and for the exponentiation.
 
 ----- RSA ------
-(e_Bob, n_Bob) = (13, 5561)
 
-for i in range(13, 5561):
-    for j in range(13, 5561):
-        if i *j == n_Bob:
-            print (i, j)
-            break
-    # p & q are 67 and 83
+My code: 
+************************
+e_Bob = 17
+n_Bob = 170171
 
-p = 67
-q = 83
+for i in range(e_Bob, n_Bob):
+     for j in range(e_Bob, n_Bob):
+         if i * j == n_Bob:   
+             print (i, j)
+             p = i
+             q = j
+             break
 
-ed + k(66 + 82) = 1
+# p = 379
+# q = 449
 
+for dee in range(n_Bob):
+    if (e_Bob * dee) %((p-1)*(q-1)) == 1:
+        print(dee)
+        d = dee
+ 
+# d = 119537
 
-This method is insecure because there is a lot of repetition. For example, 3860 repeats a few times, 1511 repeats a few times, 2442 repeats a few times, etc. People could figure out what is happening by trying common characters/sequences for those spots.
+message = [65426, 79042, 53889, 42039, 49636, 66493, 41225, 58964,
+126715, 67136, 146654, 30668, 159166, 75253, 123703, 138090,
+118085, 120912, 117757, 145306, 10450, 135932, 152073, 141695,
+42039, 137851, 44057, 16497, 100682, 12397, 92727, 127363,
+146760, 5303, 98195, 26070, 110936, 115638, 105827, 152109,
+79912, 74036, 26139, 64501, 71977, 128923, 106333, 126715,
+111017, 165562, 157545, 149327, 60143, 117253, 21997, 135322,
+19408, 36348, 103851, 139973, 35671, 93761, 11423, 41336,
+36348, 41336, 156366, 140818, 156366, 93166, 128570, 19681,
+26139, 39292, 114290, 19681, 149668, 70117, 163780, 73933,
+154421, 156366, 126548, 87726, 41418, 87726, 3486, 151413,
+26421, 99611, 157545, 101582, 100345, 60758, 92790, 13012,
+100704, 107995]
 
+decrypted = []
+for item in message:
+     decrypted.append((item**(d)) % n_Bob)
+
+print(decrypted)
+
+# decrypted = [18537, 8258, 28514, 11808, 18727, 27936, 30561, 27755, 26990, 26400, 26226, 28525, 8302, 28535, 8303, 28206, 8281, 28533, 29216, 28769, 27692, 8257, 27753, 25445, 11808, 26740, 29808, 29498, 12079, 26223, 30062, 25697, 29801, 28526, 11885, 28538, 26988, 27745, 11887, 29287, 12133, 28207, 28786, 26998, 24931, 31086, 28532, 26990, 25452, 30052, 25956, 12129, 29300, 26979, 27749, 29487, 26996, 29485, 28518, 26217, 25449, 24940, 11619, 24946, 29485, 24946, 25901, 29800, 25901, 30575, 29299, 29741, 28786, 28516, 30051, 29741, 25441, 29797, 26479, 29305, 11639, 25901, 26721, 30309, 11621, 30309, 29229, 29285, 30313, 25975, 25956, 11622, 28530, 11632, 29289, 30305, 25465, 12032]
+
+print(max(decrypted))
+# turn into binary, then to char
+chars = []
+for item in decrypted:
+    b = str(bin(item))
+    first_char = b[:-8]
+    second_char = b[-8:]
+    # print(first_char, second_char, bin(item))
+    chars.append(chr(int(first_char, 2)))
+    chars.append(chr(int(second_char, 2)))
+    
+print("".join(chars))
+************************
+
+The secret message is : 
+Hi Bob. I'm walking from now on. Your pal, Alice. https://foundation.mozilla.org/en/privacynotincluded/articles/its-official-cars-are-the-worst-product-category-we-have-ever-reviewed-for-privacy/
+
+    I figured this out from the code above.I first found p & q which were factors of n_Bob, and then found d by using this formula: (e_Bob * d) %((p-1)*(q-1)) = 1. Both of these I found by brute force.
+    I then decoded the message, by raising each integer to the power of d, and modulo-ing it with n_Bob. Each resulting integer represented 2 bytes and 2 ascii characters, so I then found the text. 
+
+This code would've gone wrong if n_Bob were bigger. This is because it takes a long time to do prime factorization with big numbers. Also,it would've taken a long time to find d, as this would result in a lot of very large calculations. (discrete log problem)
+
+This method is insecure because there is a lot of repetition/duplicates. For example, 42039 repeats, 126715 repeats, 156366 repeats a few times,  etc. People could figure out what is happening by trying common characters/sequences for those spots and attempting to find the key from there. Ex. if they guess that ". " is a common sequence of two characters or something, they could try a combination like that and get the key faster. 
 
 
 
