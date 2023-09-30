@@ -42,7 +42,16 @@ SxvLJIOjxEf68SAdEyrrJIEbnVOjWlQsmQclpesnHf43oHfhpsaJqDJriLeEntB6
 BVJqkj/5aDOlBhkXMBq/+CHCfxdDxGEGLLiDbhl04h08/fQ279j0GQ==
 -----END RSA PRIVATE KEY-----
 
+Items I expect to be contained in the file. (Hint: the Appendix of RFC 8017 should help.)
 
+
+Steps to decode private key file:
+Convert from base 64 to hex using an ASN.1 decoder
+
+
+Meaning of some ints:
+30 82 06 E4 : Offset = 0, Length = 4 + 1764
+-- the 4 is the 4 bytes that are listed 
 
 
 
