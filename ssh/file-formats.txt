@@ -42,28 +42,52 @@ SxvLJIOjxEf68SAdEyrrJIEbnVOjWlQsmQclpesnHf43oHfhpsaJqDJriLeEntB6
 BVJqkj/5aDOlBhkXMBq/+CHCfxdDxGEGLLiDbhl04h08/fQ279j0GQ==
 -----END RSA PRIVATE KEY-----
 
-Items I expect to be contained in the file. (Hint: the Appendix of RFC 8017 should help.)
+++ Items I expect to be contained in the file.
+I expect to see:
+RSAPrivateKey ::= SEQUENCE {
+             version           Version,
+             modulus           INTEGER,  -- n
+             publicExponent    INTEGER,  -- e
+             privateExponent   INTEGER,  -- d
+             prime1            INTEGER,  -- p
+             prime2            INTEGER,  -- q
+             exponent1         INTEGER,  -- d mod (p-1)
+             exponent2         INTEGER,  -- d mod (q-1)
+             coefficient       INTEGER,  -- (inverse of q) mod p
+             otherPrimeInfos   OtherPrimeInfos OPTIONAL
+         }
+The above lines were sourced from https://datatracker.ietf.org/doc/html/rfc8017#appendix-A.1.2 
+We will be using RSA. In RSA, there is a big prime (n), and its factors are (p) and (q). 
+(e) is found such that (e) < (p-1)(q-1). (d) is found such that (e)(d) = 1 mod ((p-1)(q-1)). 
+
+- Version will be 0 or 1, if n is using 2 primes or >2 primes, respectively. 
+- modulus is n
+- public exponent is e
+- private exponent is d
+- prime1 is p
+- prime2 is 1
+- exponent1 is d % (p-1)
+- exponent2 is d % (q-1)
+- coefficient is (1/q) mod p
 
 
-Steps to decode private key file:
-Convert from base 64 to hex using an ASN.1 decoder
+++ Steps to decode private key file:
+- Convert from base 64 to hex using an ASN.1 decoder. The header and footer can be included or not. 
+- I used https://lapo.it/asn1js/ 
 
 
-Meaning of some ints:
+++ Meaning of some ints:
 30 82 06 E4 : Offset = 0, Length = 4 + 1764
--- the 4 is the 4 bytes that are listed 
+- the 4 is the 4 bytes that are listed above, the rest of the length is how many bytes follow. 
+02 01 00 : 0 
 
 
 
-
-
-
-
-
-
-
-
-
+Items I expect to be contained in the file. (Hint: the Appendix of RFC 8017 should help.)
+RSAPublicKey ::= SEQUENCE {
+             modulus           INTEGER,  -- n
+             publicExponent    INTEGER   -- e
+         }
 
 
 
