@@ -70,7 +70,6 @@ We will be using RSA. In RSA, there is a big prime (n), and its factors are (p) 
 - exponent2 is d % (q-1)
 - coefficient is (1/q) mod p
 
-
 ++ Steps to decode private key file:
 - Convert from base 64 to hex using an ASN.1 decoder. The header and footer can be included or not. 
 - I used https://lapo.it/asn1js/ 
@@ -78,10 +77,9 @@ We will be using RSA. In RSA, there is a big prime (n), and its factors are (p) 
 
 ++ Meaning of some ints:
 30 82 06 E4 : Offset = 0, Length = 4 + 1764
-- the 4 is the 4 bytes that are listed above, the rest of the length is how many bytes follow. 
-02 01 00 : 0 
-
-
+- the 4 is the 4 bytes listed above, and the rest of the length is how many bytes follow. 
+02 01 00 : 0 --  Version is zero, length = 2 + 1
+02 82 01 81: Length = 4 + 385
 
 Items I expect to be contained in the file. (Hint: the Appendix of RFC 8017 should help.)
 RSAPublicKey ::= SEQUENCE {
