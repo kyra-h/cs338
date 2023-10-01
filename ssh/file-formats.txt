@@ -81,20 +81,22 @@ We will be using RSA. In RSA, there is a big prime (n), and its factors are (p) 
 02 01 00 : 0 --  Version is zero, length = 2 + 1
 02 82 01 81: Length = 4 + 385
 
-Items I expect to be contained in the file. (Hint: the Appendix of RFC 8017 should help.)
+
+
+
+----- Public Key -----
+
+Items I expect to be contained in the file.
+The following is from: https://datatracker.ietf.org/doc/html/rfc8017#appendix-A.1.1
 RSAPublicKey ::= SEQUENCE {
              modulus           INTEGER,  -- n
              publicExponent    INTEGER   -- e
          }
-
-
-
-Public Key:
+I would expect to see an integer (n), and a public exponent(e)
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKj4YqvFhM/ViQNpu1D/uKNeXl8Z7Bbh2Ii8h9+2O22eu2HqesYKY+qv7889eR0n5LlMXw50Kx2/v3jUpiC/Gaao137ieiJiw3exDWZlO8skbNmOFmz92z43oHSXLclVtiU5PEbS3SXczBXW/1cA2IrTCkvYmPOTINkzx8jCUJk6PhnZU09wj+cq/vYA2G32WSVRk64LgeEhm2IqGee6Up9sp+NwIelaEl53sqsnxQO8opEaEiQ5pfgZzt33xB62nSAU5iA9AVGQSsvv6w5jIFURs17uXTrMunhhUXYEZyz7LfUGMl97RsOUoLrfB3vzNIZkQHkbZFKArqa2W82e3sb2rNZ6TM+shZm9ZqpKuZ9977l0e0FqDTZI5rMZFMtG7uezTgyzFNjB6C5Btk9o5BMyP3RQXYiQfxrhwDiXEOrwaOFNrEEmknAIj5QJ/NohJkiOaBwEBmpUAa5MclYxiuFak4XlPmLCK0ZfxnbMPqN2HBALpIX7JIMD5bbTPpEt0= kyrahelmbold@Kyras-MacBook-Air.local
 
 
-
-
+--- Sanity Check -----
 
 
 
@@ -112,3 +114,6 @@ SHA256:AWbKVaAu1OllvdbN2vOg2JfgFkP2rwOoNzYOtkmkz6w kyrahelmbold@Kyras-MacBook-Ai
 |    E.*+o+o..o.  |
 +----[SHA256]-----+
 
+
+
+--
