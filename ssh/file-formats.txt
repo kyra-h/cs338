@@ -129,6 +129,7 @@ help from https://www.thedigitalcatonline.com/blog/2018/04/25/rsa-keys/
 All RSA public keys start with AAAAB3NzaC1y -- we gotta tell the computers that we're using the next 7 bytes, and then we gotta tell it it we're using ssh, rsa, and ascii. 
 
 --- Sanity Check -----
+1. Does (e *d)%((p-1) * (q-1)) == 1? Yes. 
 
 e = 65537
 d = int("543bacea569a4da1c8d367b206705804d876fad128587da71062388493269b22320ff0dd7f244ddd9f941bb277016fcc0f3815bc211f2e0131dd76c6e8d0d8ae8302c34da8f397f6293826ff515c1f0aefc08d83a61268ba66ad171ca7042da3ebd69f8b3e6fa09c5b0a4a05c5c5cc0afb22504f7545b6de26a104b5323e30a651aeffadcd71b12ec6987cedaf925791d0714ce59c0f5489e86142337d49239cb8c0ea0d8bf715f80660256ad300390933ff321294c2120f07422ff510a204f7a5c73c2193a572f88fde91c16323837b6283a30975b8bab95a37a6c1feefa4a8ec992bdeb5e774ee3351d5b1bb354969d4756a3b2dcc9e3c776f236990f508c45ea6a25cf01e4d1ec37e9b7694cb866c7132d870c8ed662ee0bfba9837bf9e1f4144c2b0cf38f32d985881110196a01c96dca802a49c8d4333beda9cfcb0f35151e4153c4e17d3bff3510940b1eed7c2be69be1cfd7da7ad2a2ba651389e12188ba7b8cdd2b048c691147a3e22676c97d608509e9e9ab0299cb8cc6f29ce9fed", 16)
@@ -138,6 +139,24 @@ q = int("0x00d9fc64a833d27536c99971a61a3147937c6414fea1dfbcc3466fb130f99df4645af
 
 print((e *d)%((p-1) * (q-1)))
 --> prints 1
+
+2. Is e < (p-1)(q-1)?
+<above code here>
+print(e < (p-1)*(q-1)) 
+--> prints True
+
+3. e & (p-1)(q-1)'s GCD is 1
+<above code here>
+import math
+print(math.gcd(e, (p-1)*(q-1)))
+--> prints 1
+
+4. n = pq
+<above code here>
+n = int("00ca8f862abc584cfd5890369bb50ffb8a35e5e5f19ec16e1d888bc87dfb63b6d9ebb61ea7ac60a63eaafefcf3d791d27e4b94c5f0e742b1dbfbf78d4a620bf19a6a8d77ee27a2262c377b10d66653bcb246cd98e166cfddb3e37a074972dc955b625393c46d2dd25dccc15d6ff5700d88ad30a4bd898f39320d933c7c8c250993a3e19d9534f708fe72afef600d86df659255193ae0b81e1219b622a19e7ba529f6ca7e37021e95a125e77b2ab27c503bca2911a122439a5f819ceddf7c41eb69d2014e6203d0151904acbefeb0e63205511b35eee5d3accba7861517604672cfb2df506325f7b46c394a0badf077bf334866440791b645280aea6b65bcd9edec6f6acd67a4ccfac8599bd66aa4ab99f7defb9747b416a0d3648e6b31914cb46eee7b34e0cb314d8c1e82e41b64f68e413323f74505d88907f1ae1c0389710eaf068e14dac41269270088f9409fcda2126488e681c04066a5401ae4c7256318ae15a9385e53e62c22b465fc676cc3ea3761c100ba485fb248303e5b6d33e912dd", 16)
+
+print(n == (p * q))
+--> prints True
 
 
 SHA256:AWbKVaAu1OllvdbN2vOg2JfgFkP2rwOoNzYOtkmkz6w kyrahelmbold@Kyras-MacBook-Air.local
