@@ -73,22 +73,23 @@ We will be using RSA. In RSA, there is a big prime (n), and its factors are (p) 
 - Convert from base 64 to hex using an ASN.1 decoder. The header and footer can be included or not. 
 - I used https://lapo.it/asn1js/ 
 
-++ things about the ints:
-02 means that a number it's an int. 
-82 means that it's a long (first one), the rest of the bits are then len that comes after
-There is a length of the metadata, and a length of the # of bytes(octets) that make up the int. 
+++ things about the information below:
+- 02 means that a number is an int. 
+- 82/81 means that it's a long (first one), the rest of the bits are the number of octets of length that come after
+1000 0001 or 1000 0010 (1st bit = it's indefinite, definite long, or reserved, all the bits after confirm the number of octets. If there were a zero, it would be indefinite).
+- There is a length of the metadata (start info, first number after length) and a length of the # of bytes(octets) that make up the int. 
 
 ++ Meaning of some ints:
 30 82 06 E4 : Offset = 0, Length = 4 + 1764  (total)
 02 01 00 : 0 --  Version is zero, length = 2 + 1
-02 82 01 81: Length = 4 + 385 (n) (384 bits that follow are n)
-02 03 01 00 01: (e) 65537 (Length = 2 + 3 - last 3 bytes are the value of 3)
-02 82 01 80: Length = 4 + 384 (384 bits that follow are (d))
-02 81 C1: Length = 3 + 193 (193 bits that follow are (p))
-02 81 C1: Length = 3 + 193 (193 bits that follow are (q))
-02 81 C1: Length = 3 + 193 (193 bits that follow are (exponent 1))
-02 81 C1: (Length = 3 + 193 (193 bits that follow are (exponent 2))
-02 81 C0: Length = 3 + 192 (192 bits that follow are (coefficient))
+02 82 01 81: Int, definite long, 2 following octets  Length = 4 + 385 (n) (384 bits that follow are n)
+02 03 01 00 01: Int (e) 65537 (Length = 2 + 3 - last 3 bytes are the value of 3)
+02 82 01 80: Int, definite long, 2 following octets, Length = 4 + 384 (384 bits that follow are (d))
+02 81 C1: Int definite long, 1 following octet, Length = 3 + 193 (193 bits that follow are (p))
+02 81 C1: Int, definite long, 1 following octet, Length = 3 + 193 (193 bits that follow are (q))
+02 81 C1: Int, definite long, 1 following octet,   Length = 3 + 193 (193 bits that follow are (exponent 1))
+02 81 C1: Int, definite long, 1 following octet, (Length = 3 + 193 (193 bits that follow are (exponent 2))
+02 81 C0: Int, definite long, 1 following octet, Length = 3 + 192 (192 bits that follow are (coefficient))
 
 ----- Public Key -----
 ++ Items I expect to be contained in the file.
