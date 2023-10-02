@@ -82,14 +82,14 @@ There is a length of the metadata, and a length of the # of bytes(octets) that m
 ++ Meaning of some ints:
 30 82 06 E4 : Offset = 0, Length = 4 + 1764  (total)
 02 01 00 : 0 --  Version is zero, length = 2 + 1
-02 82 01 81: Length = 4 + 385 (n)
-02 03 01 00: (e) 65537
-02 82 01 80: (d) 
-02 81 C1:   (p)
-02 81 C1:  (q)
-02 81 C1:   (exp1)
-02 81 C1: (exp2)
-02 81 C0:        (coefficient)
+02 82 01 81: Length = 4 + 385 (n) (384 bits that follow are n)
+02 03 01 00 01: (e) 65537 (Length = 2 + 3 - last 3 bytes are the value of 3)
+02 82 01 80: Length = 4 + 384 (384 bits that follow are (d))
+02 81 C1: Length = 3 + 193 (193 bits that follow are (p))
+02 81 C1: Length = 3 + 193 (193 bits that follow are (q))
+02 81 C1: Length = 3 + 193 (193 bits that follow are (exponent 1))
+02 81 C1: (Length = 3 + 193 (193 bits that follow are (exponent 2))
+02 81 C0: Length = 3 + 192 (192 bits that follow are (coefficient))
 
 ----- Public Key -----
 Items I expect to be contained in the file.
