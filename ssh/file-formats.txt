@@ -122,7 +122,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKj4YqvFhM/ViQNpu1D/uKNeXl8Z7Bbh2Ii8h9+2O2
 (7 bytes)   73 73 68 2d 72 73 61   = "ssh-rsa" (US-ASCII)
 (4 bytes)   00 00 00 03            = 3 (3 bytes follow)
 (3 bytes)   01 00 01               = 65537 (RSA exponent)
-(4 bytes)   00 00 01 81            = 385
+(4 bytes)   00 00 01 81            = 385 (385 bytes follow)
 (257 bytes) 00 ca 8f .. e9 12 dd   = The key modulus (n)
 help from https://www.thedigitalcatonline.com/blog/2018/04/25/rsa-keys/
 
