@@ -113,7 +113,7 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKj4YqvFhM/ViQNpu1D/uKNeXl8Z7Bbh2Ii8h9+2O2
 (257 bytes) 00 ca 8f .. e9 12 dd   = The key modulus (n)
 help from https://www.thedigitalcatonline.com/blog/2018/04/25/rsa-keys/
 
-All RSA public keys start with AAAAB3NzaC1y -- we gotta tell the computers that we're using the next 7 bits, and then we gotta tell it it we're using ssh, rsa, and ascii. 
+All RSA public keys start with AAAAB3NzaC1y -- we gotta tell the computers that we're using the next 7 bytes, and then we gotta tell it it we're using ssh, rsa, and ascii. 
 
 --- Sanity Check -----
 
