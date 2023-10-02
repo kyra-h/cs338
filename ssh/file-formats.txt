@@ -75,19 +75,21 @@ We will be using RSA. In RSA, there is a big prime (n), and its factors are (p) 
 - I used https://lapo.it/asn1js/ 
 
 ++ things about the ints:
-02 means that it's an int. 
+02 means that a number it's an int. 
 82 means that it's a long (first one), the rest of the bits are then len that comes after
+There is a length of the metadata, and a length of the # of bytes(octets) that make up the int. 
 
 ++ Meaning of some ints:
 30 82 06 E4 : Offset = 0, Length = 4 + 1764  (total)
 02 01 00 : 0 --  Version is zero, length = 2 + 1
 02 82 01 81: Length = 4 + 385 (n)
 02 03 01 00: (e) 65537
-02 82 01 80: (d)
+02 82 01 80: (d) 
 02 81 C1:   (p)
 02 81 C1:  (q)
 02 81 C1:   (exp1)
-02 81 C0:        
+02 81 C1: (exp2)
+02 81 C0:        (coefficient)
 
 ----- Public Key -----
 Items I expect to be contained in the file.
