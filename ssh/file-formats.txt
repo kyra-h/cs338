@@ -105,13 +105,15 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKj4YqvFhM/ViQNpu1D/uKNeXl8Z7Bbh2Ii8h9+2O2
 ++ This decoded is:
 000000077373682d727361000000030100010000018100ca8f862abc584cfd5890369bb50ffb8a35e5e5f19ec16e1d888bc87dfb63b6d9ebb61ea7ac60a63eaafefcf3d791d27e4b94c5f0e742b1dbfbf78d4a620bf19a6a8d77ee27a2262c377b10d66653bcb246cd98e166cfddb3e37a074972dc955b625393c46d2dd25dccc15d6ff5700d88ad30a4bd898f39320d933c7c8c250993a3e19d9534f708fe72afef600d86df659255193ae0b81e1219b622a19e7ba529f6ca7e37021e95a125e77b2ab27c503bca2911a122439a5f819ceddf7c41eb69d2014e6203d0151904acbefeb0e63205511b35eee5d3accba7861517604672cfb2df506325f7b46c394a0badf077bf334866440791b645280aea6b65bcd9edec6f6acd67a4ccfac8599bd66aa4ab99f7defb9747b416a0d3648e6b31914cb46eee7b34e0cb314d8c1e82e41b64f68e413323f74505d88907f1ae1c0389710eaf068e14dac41269270088f9409fcda2126488e681c04066a5401ae4c7256318ae15a9385e53e62c22b465fc676cc3ea3761c100ba485fb248303e5b6d33e912dd
 
-(4 bytes)   00 00 00 07            = 7
+(4 bytes)   00 00 00 07            = 7 (7 bytes follow)
 (7 bytes)   73 73 68 2d 72 73 61   = "ssh-rsa" (US-ASCII)
-(4 bytes)   00 00 00 03            = 3
+(4 bytes)   00 00 00 03            = 3 (3 bytes follow)
 (3 bytes)   01 00 01               = 65537 (RSA exponent)
 (4 bytes)   00 00 01 81            = 385
 (257 bytes) 00 ca 8f .. e9 12 dd   = The key modulus (n)
 help from https://www.thedigitalcatonline.com/blog/2018/04/25/rsa-keys/
+
+All RSA public keys start with AAAAB3NzaC1y -- we gotta tell the computers that we're using the next 7 bits, and then we gotta tell it it we're using ssh, rsa, and ascii. 
 
 --- Sanity Check -----
 
