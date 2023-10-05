@@ -1,1 +1,21 @@
+Kyra Helmbold
+
+
+1. Alice wants to send Bob a long message, and she doesn't want Eve to be able to read it. Assume for this scenario that AITM is impossible.
+- For this scenario, I would use the Diffie-Hellman exchange to agree upon a shared K. Alice can then use K to encrypt the message and send it to Bob. 
+
+2. Alice wants to send Bob a long message. She doesn't want Mal to be able to modify the message without Bob detecting the change.
+- For this scenario, Alice could send a message encoded with her secret key(S_A). Anyone would be able to read the message, but they wouldn't be able to change it, as they would need Alice's secret key(S_A) to re-encode the altered message. Bob can decode this message with Alice's Public Key (P_A)
+
+3. Alice wants to send Bob a long message (in this case, it's a signed contract between AliceCom and BobCom), she doesn't want Eve to be able to read it, and she wants Bob to have confidence that it was Alice who sent the message. Assume for this scenario that AITM is impossible.
+- DH and then send a message encoded with Alice's secret key (S_A) saying it's me, Alice. 
+
+4. Consider scenario #3 above. Suppose Bob sues Alice for breach of contract and presents as evidence: the digitally signed contract (C || Sig) and Alice's public key P_A. Suppose Alice says in court "C is not the contract I sent to Bob". (This is known as repudiation in cryptographic vocabulary.) Alice will now need to explain to the court what she believes happened that enabled Bob to end up with an erroneous contract. List at least three things Alice could claim happened. For each of Alice's claims, state briefly how plausible you would find the claim if you were the judge. (Assume that you, the judge, studied cryptography in college.)
+- someone has alices secret key (plausible)
+- There was an adversary in the middle, which modified the cotnract when it was being sent to Bob. 
+
+5. For this scenario, suppose the assumption that everybody has everybody else's correct public keys is no longer true. Instead, suppose we now have a certificate authority CA, and that everybody has the correct P_CA (i.e. the certificate authority's key). Suppose further that Bob sent his public key P_B to CA, and that CA then delivered to Bob this certificate:
+
+Cert_B = "bob.com" || P_B || Sig_CA
+In terms of P_CA, S_CA, H, E, etc., of what would Sig_CA consist? That is, show the formula CA would use to compute Sig_CA.
 
