@@ -25,5 +25,8 @@ In terms of P_CA, S_CA, H, E, etc., of what would Sig_CA consist? That is, show 
 - Sign_CA will consist of E(S_CA, H("bob.com" || P_B)). A user can validate this, by ensuring H("bob.com" || P_B) == E(P_CA, Sign_CA)
 
 6. Bob now has the certificate Cert_B from the previous question. During a communication, Bob sends Alice Cert_B. Is that enough for Alice to believe she's talking to Bob? (Hint: no.) What could Alice and Bob do to convince Alice that Bob has the S_B that goes with the P_B in Cert_B?
+No. Other people have access to Cert_B. Bob could send C =  E(S_B, Cert_B). Alice can then decrypt this message E(P_B, C). If she gets the same certificate, she knows she is talking to someone with Bob's S_B.
 
 7. Finally, list at least two ways this certificate-based trust system could be subverted, allowing Mal to convince Alice that Mal is Bob.
+- If Mal has S_B, they could convince Alice they are Bob.
+- If Mal has S_CA, they could generate a fake certificate with Mal's own S_M and P_M. 
