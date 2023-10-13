@@ -1,1 +1,48 @@
++ What can you learn about jeffondich.com?
+- What is its IPv4 address?
+IP: 45.79.89.123
+- Does it have an IPv6 address, and if so, what is it?
+- What subdomains does it have?
+- What other domains or subdomains have the same IP address?
+- What operating system does the jeffondich.com server use?
+OS: Linux; CPE: cpe:/o:linux:linux_kernel
+- What web server software is it using?
+Server: nginx/1.18.0 (Ubuntu)
+- Who is in charge of it?
+- What ports are open on it, and what kinds of servers are listening
+    on those ports?
+22/tcp   open   ssh
+80/tcp   open   http
+443/tcp  open   https
+8080/tcp closed http-proxy
+8081/tcp closed blackice-icecap
 
+- vulnerable to DDoS (ex syn flood)
+- http proxy port 8000
+- certificate --> use let's encrypt
+
+nmap jeffondich.com
+Nmap scan report for jeffondich.com (45.79.89.123)
+Host is up (0.054s latency).
+rDNS record for 45.79.89.123: li1188-123.members.linode.com
+Not shown: 995 filtered tcp ports (no-response)
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   open   http
+443/tcp  open   https
+8080/tcp closed http-proxy
+8081/tcp closed blackice-icecap
+
+
+nmap -sV jeffondich.com
+Nmap scan report for jeffondich.com (45.79.89.123)
+Host is up (0.056s latency).
+rDNS record for 45.79.89.123: li1188-123.members.linode.com
+Not shown: 995 filtered tcp ports (no-response)
+PORT     STATE  SERVICE         VERSION
+22/tcp   open   ssh             OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)
+80/tcp   open   http            nginx 1.18.0 (Ubuntu)
+443/tcp  open   ssl/http        nginx 1.18.0 (Ubuntu)
+8080/tcp closed http-proxy
+8081/tcp closed blackice-icecap
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
