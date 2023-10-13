@@ -20,6 +20,7 @@ Server: nginx/1.18.0 (Ubuntu)
 - vulnerable to DDoS (ex syn flood)
 - http proxy port 8000
 - certificate --> use let's encrypt
+- other domains
 
 nmap jeffondich.com
 Nmap scan report for jeffondich.com (45.79.89.123)
