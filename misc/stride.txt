@@ -1,1 +1,9 @@
 Kyra Helmbold
+
+
+Spoofing                - Authentication
+Tampering               - Integrity
+Repudiation             - Non-repudiation
+Information Disclosure  - Confidentiality
+Denial of Service       - Availability
+Elevation of Privilege  - Authorization
