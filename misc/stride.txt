@@ -1,6 +1,5 @@
 Kyra Helmbold
 
-
 Spoofing                - Authentication
 Tampering               - Integrity
 Repudiation             - Non-repudiation
@@ -10,3 +9,16 @@ Elevation of Privilege  - Authorization
 
 
 https://tapirsunlimited.com/ 
+45.79.89.123
+4
+Nmap scan report for tapirsunlimited.com (45.79.89.123)
+Host is up (0.075s latency).
+rDNS record for 45.79.89.123: li1188-123.members.linode.com
+Not shown: 995 filtered tcp ports (no-response)
+PORT     STATE  SERVICE         VERSION
+22/tcp   open   ssh             OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)
+80/tcp   open   http            nginx 1.18.0 (Ubuntu)
+443/tcp  open   ssl/http        nginx 1.18.0 (Ubuntu)
+8080/tcp closed http-proxy
+8081/tcp closed blackice-icecap
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
