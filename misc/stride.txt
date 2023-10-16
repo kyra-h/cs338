@@ -7,3 +7,6 @@ Repudiation             - Non-repudiation
 Information Disclosure  - Confidentiality
 Denial of Service       - Availability
 Elevation of Privilege  - Authorization
+
+
+https://tapirsunlimited.com/ 
