@@ -1,6 +1,8 @@
 Kyra Helmbold
 Worked with Kiri Salij
 
+Data flow diagram is in the same folder
+
 Spoofing, or impersonating another person or computer, which violates authenticity
 An eavesdropper could look at the get request that has the authentication encoded in base64 (HTTP get request format, basic authentication). This would likely be when the client sends the request to a get app.  Once an eavesdropper has the get request, they could grab a user’s password and information, and impersonate them. They just need to find where in the GET request it says Authorization: Basic and then the username:password. They can decode this from base64, and have all the information they need to pretend to be someone else.
 We could help mitigate this by using HTTPS. 
