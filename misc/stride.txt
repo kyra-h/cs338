@@ -1,19 +1,44 @@
 Kyra Helmbold
 Worked with Kiri Salij
 
-Spoofing                - Authentication
-- 
-Tampering               - Integrity
-Repudiation             - Non-repudiation
-Information Disclosure  - Confidentiality
-Denial of Service       - Availability
-Elevation of Privilege  - Authorization
+Spoofing, or impersonating another person or computer, which violates authenticity
+An eavesdropper could look at the get request that has the authentication encoded in base64 (HTTP get request format, basic authentication). This would likely be when the client sends the request to a get app.  Once an eavesdropper has the get request, they could grab a user’s password and information, and impersonate them. They just need to find where in the GET request it says Authorization: Basic and then the username:password. They can decode this from base64, and have all the information they need to pretend to be someone else.
+We could help mitigate this by using HTTPS. 
+
+Tampering with data, which violates integrity
+We could also spoof Jeff’s Database server, by pretending to be the Tapirs Unlimited server. We could send a query to the server saying to change a username etc, and the database server would think we were the TU server with a valid request from the client. We don’t need to control Jeff’s IP address because we don’t care about what the database server sends back. 
+We could prevent this by encrypting all messages to the database server using public key cryptography. The TU server could encrypt a message using TU’s private key, and the DB could decrypt it with the public key. If the message is not gibberish, the DB server knows it’s a valid request.
+They could also encrypt all messages with a shared key by doing Diffie-Hellman at the start between the servers or something. 
+
+Repudiation, or making it impossible to link an action you performed to you, which violates non-repudiability. 
+If Tapirs Unlimited is able to be accessed publicly, one could potentially access the website from a Library computer and flood the server with get requests or something. 
+We could mitigate this by preventing users who aren’t logged in from sending more than, say, 3 get requests a second or something like that. 
+
+Information disclosure
+If passwords are stored in plaintext on the database int the case where  the database is breached, anyone could see the passwords.
+We mitigate this by instead storing the hashes of the passwords, so when a user logs in, we just check that the hashes match up. 
+
+Denial of service
+The server is potentially susceptible to DDoS attacks. In this attack, hackers could flood the system with GET requests, SYN requests, etc.
+We could mitigate this by placing a limit on how many requests users can place on the site.   
+
+Elevation of privilege
+A user could break into Jeff’s house, and change their permissions (@Jeff we know where you live)
+We could mitigate this by placing security guards around the premises. 
+We could eavesdrop on the GET request of an administrator. If it is not encrypted, we could get their password. Then, we could do all sorts of admin things.
+Again, we could mitigate this by using HTTPS instead of just HTTP. 
 
 
+                         _,.,.__,--.__,-----.
+                      ,""   '))              `.
+                    ,'   e                    ))
+                   (  .='__,                  ,
+                    `~`     `-\  /._____,/   /
+                             | | )    (  (   ;
+                             | | |    / / / / 
+                     vvVVvvVvVVVvvVVVvvVVvVvvvVvPhSv
 
-
-
-
+Image sourced from: https://ascii.co.uk/art/tapir 
 
 
 
