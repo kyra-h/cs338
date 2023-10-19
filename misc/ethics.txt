@@ -1,1 +1,9 @@
-
+A. The main ethical question is balancing my safety with the security of the many InstaToonz users. I have to decide whether or not it is worth putting myself in legal/financial jeopardy to ensure the security of the private messages of the users.
+B. The InstaToonz users have a right to private messages, InstaToonz has a right to their copyrighted music etc., and I have a right to be able to avoid big lawsuits etc. if I haven't done anything wrong? Maybe?
+C. I would be able to make a better decision if I knew my financial standing/time constraints. If I had a lot of time/money, I would potentially be okay with sacrificing some of this to try and change the way InstaToonz handles these reports (ex. try to get an interview with NYT or something if InstaToonz is rude to me)
+D. My possible actions are: 
+reporting the bug --> I may get sued
+not reporting the bug --> Users' messages are still insecure
+E. Yes. It says to: "respect privacy", "be honest and trustworthy", "Honor confidentiality", "Ensure that the public good is the central concern during all professional computing work." etc. These point to reporting the bug. 
+F. Encryption/Copy Protection: I think that this may put me in violation, as I am likely circumventing "a technological measure that effectively controls access to a work protected under this title". I am not entirely sure what "this title" means, but it definitely is concerning. I think I would try to report this bug anonymously, from say, a library computer, with a new random email address or something. I would do my best to make it untraceable back to me, while also accomplishing the goal of trying to get the bug fixed.
+No Encryption/Copy Protection: If this bug doesn't involve encryption or copy-protection, then I *think* I am in the clear to send a message to them. I would probably consult my pre-law friends first though. 
