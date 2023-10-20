@@ -7,3 +7,22 @@ not reporting the bug --> Users' messages are still insecure
 E. Yes. It says to: "respect privacy", "be honest and trustworthy", "Honor confidentiality", "Ensure that the public good is the central concern during all professional computing work." etc. These point to reporting the bug. 
 F. Encryption/Copy Protection: I think that this may put me in violation, as I am likely circumventing "a technological measure that effectively controls access to a work protected under this title". I am not entirely sure what "this title" means, but it definitely is concerning. I think I would try to report this bug anonymously, from say, a library computer, with a new random email address or something. I would do my best to make it untraceable back to me, while also accomplishing the goal of trying to get the bug fixed.
 No Encryption/Copy Protection: If this bug doesn't involve encryption or copy-protection, then I *think* I am in the clear to send a message to them. I would probably consult my pre-law friends first though. 
+
+A. The ethical question is about the data of the users. Should we go through with the plan and avoid scrubbing the data? Should we just stop the plan until the CEO agrees to avoid data-scrubbing? Does it matter if the data is anonymized?
+B. The users have a right to privacy. The business owner has the right to make decisions that will benefit them. 
+C. It would help me to know how close I am to the CEO. If I am close to the CEO, I could talk to them and try to explain the importance of privacy, and especially for ensuring the customers continue use our business. As a small start-up, this could ruin all trust in the business.
+  It would also help to know if the privacy is advertised to the users. If this is a key reason people are in the app, I would be hesitant to sell the data. If not, as a user of anything that collects my location, I assume that my data is being sold. For example, whenever I use Snapchat, I assume my location data is being sold.
+D. I could:
+Not go through with my plan --> I get fired
+Go through with my plan & scrub the data --> I get fired
+Try to talk to the CEO --> maybe get fired
+Do part of the plan, but not scrub the data --> Violate the users' privacy.
+E.
+F.
+
+Identify the main ethical question or questions faced by the main character ("you") in the scenario. This will certainly include "what should you do?", but there may be other interesting questions to consider.
+For each stakeholder (or category of stakeholders) in the scenario, identify the stakeholder's relevant rights.
+List any information missing from the scenario that you would like to have to help you make better choices.
+Describe your possible actions, and discuss the likely consequences of those actions.
+Discuss whether the ACM Code of Ethics and Professional Conduct offers any relevant guidance.
+Describe and justify your recommended action, as well as your answers to any other questions you presented in part A.
