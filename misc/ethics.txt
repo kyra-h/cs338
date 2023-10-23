@@ -17,12 +17,5 @@ Not go through with my plan --> I get fired
 Go through with my plan & scrub the data --> I get fired
 Try to talk to the CEO --> maybe get fired
 Do part of the plan, but not scrub the data --> Violate the users' privacy.
-E.
-F.
-
-Identify the main ethical question or questions faced by the main character ("you") in the scenario. This will certainly include "what should you do?", but there may be other interesting questions to consider.
-For each stakeholder (or category of stakeholders) in the scenario, identify the stakeholder's relevant rights.
-List any information missing from the scenario that you would like to have to help you make better choices.
-Describe your possible actions, and discuss the likely consequences of those actions.
-Discuss whether the ACM Code of Ethics and Professional Conduct offers any relevant guidance.
-Describe and justify your recommended action, as well as your answers to any other questions you presented in part A.
+E. The ACM says to "Maintain high standards of professional competence, conduct, and ethical practice.", and "Design and implement systems that are robustly and usably secure.". I think these point to not selling the data. 
+F. My recommended action is to talk to the CTO. They seem to understand the risks, and by talking to them I might get a better idea of what's happening. Maybe selling anonymized location data isn't that bad? But if we do do it, I think we should inform the users. 
