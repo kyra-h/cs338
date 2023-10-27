@@ -1,0 +1,42 @@
+Part 1
+Total time: 37.604146003723145s 
+Number of hashes computed: 267516
+Passwords cracked: 2734
+Time per hash computed: [seconds per hash] 0.00014056783894691587
+Time per password cracked: [seconds per password] 0.013754259694119657
+Passwords cracked per number of hashes computed: [passwords per hash] 0.010219949460966821
+
+Part 2
+Total time: 759.8391492366791s (~12.6 minutes)
+Number of hashes computed: 1246892076
+Passwords cracked: 51
+Time per hash computed: [seconds per hash] 6.093864608348662e-07
+Time per password cracked: [seconds per password] 14.89880684777802
+Passwords cracked per number of hashes computed: [passwords per hash] 4.0901695488840366e-08
+
+Part 3
+Total time: 419.85552406311035s (~7 minutes)
+Number of hashes computed: 731388744
+Passwords cracked: 2734
+Time per hash computed: [seconds per hash] 5.740524823596552e-07
+Time per password cracked: [seconds per password] 0.1535682238709255
+Passwords cracked per number of hashes computed: [passwords per hash] 3.7380941700683323e-06
+
+
+Analysis:
+- Did your time per hash computed change between phases? By what factor? Why?
+Not very much. I think the reason it was so much higher in phase1 is that I was including the time to write to the file (which is constant across all phases), and because there was so much less time doing other things it affected it more. 
+
+- Did your time per password crack change between phases? By what factor? Why?
+Yes. Between phase1 and phase2 it went up by ~ 1080 times. This is because there are so many more options of passwords to consider. The time went up by ~10 times between phase1 and phase3. This is because when we salted the passwords, we had to try a lot more combinations (we had to salt the words many times and then compute the hashes), so we had to compute 2374 times more hashes. I also think the timing for phase1 is slightly off, and it was faster than the time I recorded. 
+
+- Suppose you wanted to precompute all the hashes for each possible password so you could just look up the password in a table indexed by the hash. How much memory would be required for each phase?
+Phase1: 267516 hashes * 32 + 2734 passwords * 16 = 8560512 + 43744 = 8604256 bytes
+Phase2: 267516^2 hashes * 32 + 2734 passwords * 16  = 2290073971936 bytes
+Phase3 = 267516 * 2734 hashes * 32 + 2734 passwords * 16 = 23404483552 bytes
+
+- Give 3-4 reasons we should store password hashes and not the passwords themselves. Think in terms of threats, who the attackers might be, etc.
+    - It is good to keep hackers from being able to gain access to the passwords simply by gaining access to the password file. This will keep them from being able to instantly have all of the passwords. 
+    - It keeps the employees of the company from getting access to the passwords. Maybe they need access to the file of hashes to fix a bug, but they won't be able to gain all the passwords right away.
+    - It keeps users from being able to store passwords that may be dangerous If we just pass all input to the hash function, it will be harder to perform a SQL injection attack (e.g. someone's password is ') DROP TABLE, if we hash it immediately, it will protect us from potentially iterating through the passwords and having problems.
+    - It may help with buffer overflow attacks (probably not but,,, maybe). With the hash function, we have a specific amount of storage that is used for every person -- the hash function will not output a series of bits that is longer. This means that users may be able to enter a very long password, but there could be less danger of overwriting other peoples' passwords in memory etc. if only a certain amount of memory is originally allocated for each password.
